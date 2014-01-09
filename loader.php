@@ -24,6 +24,9 @@ define( 'BP_PORTFOLIO_PLUGIN_URL',          plugins_url() . '/bp-portfolio');
 function bp_portfolio_init() {
 	if ( version_compare( BP_VERSION, '1.3', '>' ) )
 		require( dirname( __FILE__ ) . '/includes/bp-portfolio-loader.php' );
+
+    //add languages
+    load_plugin_textdomain('bp-portfolio', false, 'BP-Portfolio/languages');
 }
 add_action( 'bp_include', 'bp_portfolio_init' );
 
@@ -32,8 +35,8 @@ add_action( 'bp_include', 'bp_portfolio_init' );
 function bp_portfolio_activate() {
     require( dirname( __FILE__ ) . '/includes/bp-portfolio-install.php' );
     bp_portfolio_default_options();
+
 }
 register_activation_hook( __FILE__, 'bp_portfolio_activate' );
-
 
 ?>
