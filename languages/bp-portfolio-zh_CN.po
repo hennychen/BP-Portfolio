@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: buddypress-portfolio\n"
 "POT-Creation-Date: 2013-09-01 17:01-0300\n"
-"PO-Revision-Date: 2014-01-09 11:19+0800\n"
+"PO-Revision-Date: 2014-01-09 12:44+0800\n"
 "Last-Translator: \n"
 "Language-Team: hennychen <chenjunheng@foxmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -93,3 +93,13 @@ msgstr "显示页 %1$s of %2$s"
 #: templates/default/index.php:25
 msgid "All projects <span>%s</span>"
 msgstr "所有项目 <span>%s</span>"
+
+#: includes/widgets/bp-portfolio-last-projects-widget.php:5
+msgid "Last projects"
+msgstr "最新项目"
+
+msgid "Projects <span class=\"count\">%s</span>"
+msgstr "项目 <span class=\"count\">%s</span>"
+
+msgid "Projects"
+msgstr "项目"

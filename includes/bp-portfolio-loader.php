@@ -128,8 +128,57 @@ class BP_Portfolio_Component extends BP_Component {
         
         parent::setup_nav($main_nav, $sub_nav);
     }
-    
-    
+
+    /**
+     * Set the component's adminbar
+     */
+    function setup_admin_bar() {
+        global $bp;
+
+        $wp_admin_nav = array();
+
+        $directWorkflow = isDirectWorkflow();
+
+        if ( is_user_logged_in() ) {
+
+//            if($directWorkflow){
+//                $postCount = custom_get_user_posts_count(array("publish", "draft"));
+//            }else{
+//                $postCount =  custom_get_user_posts_count(array("publish", "pending", "draft"));
+//            }
+
+
+            $user_domain = bp_is_user() ? bp_displayed_user_domain() : bp_loggedin_user_domain();
+
+
+
+
+//main-menu
+            $wp_admin_nav[] = array(
+                'parent' => $bp->my_account_menu_id,
+                'id'     => 'my-account-bp-portfolio',
+                'title'  => __( 'Projects', 'bp-portfolio' ),
+                'href'   => trailingslashit( $user_domain.bp_get_portfolio_slug() )
+            );
+            $portfolio_link = trailingslashit(bp_loggedin_user_domain() . bp_get_portfolio_slug());
+//portfolio-child
+            $wp_admin_nav[] = array(
+                'parent' => 'my-account-bp-portfolio',
+                'title'  => sprintf( __( 'Projects <span class="count">%s</span>', 'bp-portfolio' ), bp_portfolio_get_user_projects_count(bp_displayed_user_id() ) ),
+                'href'   => trailingslashit( $user_domain.bp_get_portfolio_slug() )
+            );
+
+//add-child
+            $wp_admin_nav[] = array(
+                'parent' => 'my-account-bp-portfolio',
+                'title'  => __('Add', 'bp-portfolio'),
+                'href'   => trailingslashit( $user_domain.bp_get_portfolio_slug()."/add" )
+            );
+        }
+
+        parent::setup_admin_bar( $wp_admin_nav );
+    }
+
     /**
      * Register the new post type "portfolio"
      */
